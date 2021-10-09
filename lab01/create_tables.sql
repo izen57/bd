@@ -40,5 +40,3 @@ create table if not exists fare
 
 alter table transport_stop add electricity bool;
 alter table transport_stop add rails bool;
-
-truncate transport_stop cascade;
