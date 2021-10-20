@@ -1,30 +1,30 @@
--- 1. Инструкция SELECT, использующая предикат сравнения.
+-- 1. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїСЂРµРґРёРєР°С‚ СЃСЂР°РІРЅРµРЅРёВ¤.
 select distinct t.root_number, t.transport_type
 from transport t join transport as t2 on t.transport_type = t2.transport_type
 where t2.start_id != t.start_id and t.entry_date = '1982-08-24'
 order by t.root_number, t.transport_type;
 
--- 2. Инструкция SELECT, использующая предикат BETWEEN.
+-- 2. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїСЂРµРґРёРєР°С‚ BETWEEN.
 select distinct name, address
 from transport_stop
 where install_year between '1997-01-01' and '1997-03-31';
 
--- 3. Инструкция SELECT, использующая предикат LIKE.
+-- 3. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїСЂРµРґРёРєР°С‚ LIKE.
 select distinct root_number, start_id, stop_id
 from fare
-where day_time like 'с 9%';
+where day_time like 'СЃ 9%';
 
--- 4. Инструкция SELECT, использующая предикат IN с вложенным подзапросом.
+-- 4. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїСЂРµРґРёРєР°С‚ IN СЃ РІР»РѕР¶РµРЅРЅС‹Рј РїРѕРґР·Р°РїСЂРѕСЃРѕРј.
 select root_number, start_id, stop_id
 from fare
 where root_number in
 (
 	select root_number
 	from transport
-	where transport_type = 'автобус'
+	where transport_type = 'Р°РІС‚РѕР±СѓСЃ'
 ) and price > 50;
 
--- 5. Инструкция SELECT, использующая предикат EXISTS с вложенным подзапросом.
+-- 5. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїСЂРµРґРёРєР°С‚ EXISTS СЃ РІР»РѕР¶РµРЅРЅС‹Рј РїРѕРґР·Р°РїСЂРѕСЃРѕРј.
 select root, timing
 from timetable
 where exists
@@ -34,7 +34,7 @@ where exists
 	where install_year > '1990-02-23'
 );
 
--- 6. Инструкция SELECT, использующая предикат сравнения с квантором
+-- 6. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїСЂРµРґРёРєР°С‚ СЃСЂР°РІРЅРµРЅРёВ¤ СЃ РєРІР°РЅС‚РѕСЂРѕРј
 select root, max_price
 from timetable
 where max_price > all
@@ -44,19 +44,19 @@ where max_price > all
 	where start_id = 123
 );
 
--- 7. Инструкция SELECT, использующая агрегатные функции в выражениях столбцов.
+-- 7. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ Р°РіСЂРµРіР°С‚РЅС‹Рµ С„СѓРЅРєС†РёРё РІ РІС‹СЂР°Р¶РµРЅРёВ¤С… СЃС‚РѕР»Р±С†РѕРІ.
 select avg(price)
 from fare
 group by start_id;
 
--- 8. Инструкция  SELECT, использующая скалярные подзапросы в выражениях столбцов.
+-- 8. В»РЅСЃС‚СЂСѓРєС†РёВ¤  SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ СЃРєР°Р»В¤СЂРЅС‹Рµ РїРѕРґР·Р°РїСЂРѕСЃС‹ РІ РІС‹СЂР°Р¶РµРЅРёВ¤С… СЃС‚РѕР»Р±С†РѕРІ.
 select
 (
 	select name
 	from transport_stop limit 1
 );
 
--- 10. Инструкция SELECT, использующая поисковое выражение CASE.
+-- 10. В»РЅСЃС‚СЂСѓРєС†РёВ¤ SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ РїРѕРёСЃРєРѕРІРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ CASE.
 select root,
 case
 	when weekends = true then
@@ -66,25 +66,25 @@ case
 end weekends
 from timetable;
 
--- 16. Однострочная инструкция INSERT, выполняющая вставку в таблицу одной строки значений.
-insert into transport values (1, 78, 53, 'троллейбус', '1882-08-24');
+-- 16. СњРґРЅРѕСЃС‚СЂРѕС‡РЅР°В¤ РёРЅСЃС‚СЂСѓРєС†РёВ¤ INSERT, РІС‹РїРѕР»РЅВ¤СЋС‰Р°В¤ РІСЃС‚Р°РІРєСѓ РІ С‚Р°Р±Р»РёС†Сѓ РѕРґРЅРѕР№ СЃС‚СЂРѕРєРё Р·РЅР°С‡РµРЅРёР№.
+insert into transport values (1, 78, 53, 'С‚СЂРѕР»Р»РµР№Р±СѓСЃ', '1882-08-24');
 
--- 17. Многострочная инструкция INSERT, выполняющая вставку в таблицу результирующего набора данных вложенного подзапроса.
+-- 17. С›РЅРѕРіРѕСЃС‚СЂРѕС‡РЅР°В¤ РёРЅСЃС‚СЂСѓРєС†РёВ¤ INSERT, РІС‹РїРѕР»РЅВ¤СЋС‰Р°В¤ РІСЃС‚Р°РІРєСѓ РІ С‚Р°Р±Р»РёС†Сѓ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµРіРѕ РЅР°Р±РѕСЂР° РґР°РЅРЅС‹С… РІР»РѕР¶РµРЅРЅРѕРіРѕ РїРѕРґР·Р°РїСЂРѕСЃР°.
 insert into transport
 select
 (
 	select max(root)
 	from timetable
 	where max_price = 121
-), start_id, stop_id, 'маршрутка', '2001-07-06'
+), start_id, stop_id, 'РјР°СЂС€СЂСѓС‚РєР°', '2001-07-06'
 from transport;
 
--- 18. Простая инструкция UPDATE.
+-- 18. С•СЂРѕСЃС‚Р°В¤ РёРЅСЃС‚СЂСѓРєС†РёВ¤ UPDATE.
 update timetable
 set timing = timing + '00:15:00'
 where transport_stop_id = 956;
 
--- 19. Инструкция UPDATE со скалярным подзапросом в предложении SET.
+-- 19. В»РЅСЃС‚СЂСѓРєС†РёВ¤ UPDATE СЃРѕ СЃРєР°Р»В¤СЂРЅС‹Рј РїРѕРґР·Р°РїСЂРѕСЃРѕРј РІ РїСЂРµРґР»РѕР¶РµРЅРёРё SET.
 update timetable
 set max_price =
 (
@@ -94,11 +94,11 @@ set max_price =
 )
 where root = 12;
 
--- 20. Простая инструкция DELETE.
+-- 20. С•СЂРѕСЃС‚Р°В¤ РёРЅСЃС‚СЂСѓРєС†РёВ¤ DELETE.
 delete from transport_stop
 where install_year = '1999-02-19';
 
--- 23. Инструкция  SELECT, использующая рекурсивное обобщенное табличное выражение. 
+-- 23. В»РЅСЃС‚СЂСѓРєС†РёВ¤  SELECT, РёСЃРїРѕР»СЊР·СѓСЋС‰Р°В¤ СЂРµРєСѓСЂСЃРёРІРЅРѕРµ РѕР±РѕР±С‰РµРЅРЅРѕРµ С‚Р°Р±Р»РёС‡РЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ. 
 with recursive cte as
 (
 	select '09:00:00' as timing, transport_stop_id, root, weekends, max_price
@@ -113,7 +113,7 @@ select *
 from cte
 order by timing;
 
--- 25. Оконные фнкции для устранения дублей 
+-- 25. СњРєРѕРЅРЅС‹Рµ С„РЅРєС†РёРё РґР»В¤ СѓСЃС‚СЂР°РЅРµРЅРёВ¤ РґСѓР±Р»РµР№ 
 select t.root, t.transport_stop_id
 into temp temp_table
 from timetable as t join fare as f on t.root = f.root_number;
@@ -129,6 +129,6 @@ where root in
 	where tt.unique_val > 1
 );
 
--- Защита: вывести кол-во остановок со всеми видами транспорта
+-- В«Р°С‰РёС‚Р°: РІС‹РІРµСЃС‚Рё РєРѕР»-РІРѕ РѕСЃС‚Р°РЅРѕРІРѕРє СЃРѕ РІСЃРµРјРё РІРёРґР°РјРё С‚СЂР°РЅСЃРїРѕСЂС‚Р°
 select count(*)
 from transport as t join transport_stop as ts on (ts.id = t.start_id or ts.id = t.stop_id) and ts.electricity is true and ts.rails is true;
