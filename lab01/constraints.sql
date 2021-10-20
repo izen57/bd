@@ -14,10 +14,10 @@ alter table transport_stop add constraint id_unique unique (id);
 
 create trigger transport_stop_electricity
 after insert on transport_stop
-when (transport.transport_type = 'òğîëëåéáóñ')
+when (transport.transport_type = '×¢× ××›×›×•×™×‘×£×¡')
 execute execute procedure --electricity = true
 
 create trigger transport_stop_rails
 after insert on transport_stop
-when (transport.transport_type = 'òğàìâàé')
+when (transport.transport_type = '×¢× ××œ×’××™')
 execute rails = true
