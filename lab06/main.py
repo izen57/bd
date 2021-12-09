@@ -97,7 +97,7 @@ menu = '0. Завершить программу.\n' \
 	'11. Выполнить защиту\n' \
 	'Выбранный пункт меню: '
 
-connection = ps2.connect(user = 'postgres', password = 'pgadminkoro', host = '127.0.0.1', port = '5432', database = 'postgres')
+connection = ps2.connect(user = 'postgres', password = '', host = '127.0.0.1', port = '5432', database = 'postgres')
 cursor = connection.cursor()
 queries = [exit, scalar_query, join, None, metadata_query, call_scalar_func, call_table_func, stored_proc, call_sys_func, create_table, insert_table, defence]
 
