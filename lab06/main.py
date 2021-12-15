@@ -1,6 +1,7 @@
 import psycopg2 as ps2
-from psycopg2 import sql
 from prettytable import PrettyTable
+from psycopg2 import sql
+
 
 def scalar_query(cursor):
 	print('\nНазвание и адрес остановок, которые были установлены с 1 января по 31 марта 1997 года')
