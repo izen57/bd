@@ -9,15 +9,3 @@ alter table fare add constraint fare_root_number_fkey foreign key (root_number) 
 alter table fare add constraint fare_start_id_fkey foreign key (start_id) references transport_stop(id);
 alter table fare add constraint fare_stop_id_fkey foreign key (stop_id) references transport_stop(id);
 alter table transport_stop add constraint id_unique unique (id);
-
--- ???, ????, ???????? ?????
-
-create trigger transport_stop_electricity
-after insert on transport_stop
-when (transport.transport_type = 'ענמככויבףס')
-execute execute procedure --electricity = true
-
-create trigger transport_stop_rails
-after insert on transport_stop
-when (transport.transport_type = 'ענאלגאי')
-execute rails = true
